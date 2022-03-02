@@ -17,61 +17,66 @@ console.log(enemyNames[3]);
 debugger;
 // fight function
 var fight = function(enemyName) {
-  debugger;
-      while(playerHealth > 0 && enemyHealth > 0) {
+ 
+  while(playerHealth > 0 && enemyHealth > 0) {
         
   
-        // ask player if they'd like to fight or run
-        var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+    // ask player if they'd like to fight or run
+    var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
-        if (promptFight === "skip" || promptFight === "SKIP") {
-        // confirm player wants to skip
-        var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+     if (promptFight === "skip" || promptFight === "SKIP") {
+      // confirm player wants to skip
+      var confirmSkip = window.confirm("Are you sure you'd like to quit?");
     
-        // if yes (true), leave fight
-        if (confirmSkip) {
-          window.alert(playerName + " has decided to skip this fight. Goodbye!");
-          // subtract money from playerMoney for skipping
-          playerMoney = playerMoney - 10;
-          console.log("playerMoney", playerMoney)
-          break;
-        }
-        }
-          // remove enemy's health by subtracting the amount set in the playerAttack variable
-          enemyHealth = enemyHealth - playerAttack;
-          console.log(
-            playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
-          );
+      // if yes (true), leave fight
+      if (confirmSkip) {
+        window.alert(playerName + " has decided to skip this fight. Goodbye!");
+        // subtract money from playerMoney for skipping
+        playerMoney = playerMoney - 10;
+        console.log("playerMoney", playerMoney)
+        break;
+      }
+    }
+    // remove enemy's health by subtracting the amount set in the playerAttack variable
+    enemyHealth = enemyHealth - playerAttack;
+    console.log(
+      playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+    );
       
           // check enemy's health
-          if (enemyHealth <= 0) {
-            window.alert(enemyName + " has died!");
-            playerMoney= playerMoney + 20;
-            break;
-          } else {
-            window.alert(enemyName + " still has " + enemyHealth + " health left.");
-          }
+    if (enemyHealth <= 0) {
+      window.alert(enemyName + " has died!");
+      playerMoney= playerMoney + 20;
+      break;
+    } else {
+      window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
       
           // remove players's health by subtracting the amount set in the enemyAttack variable
-          playerHealth = playerHealth - enemyAttack;
-          console.log(
-          enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
-          );
+    playerHealth = playerHealth - enemyAttack;
+    console.log(
+      enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
       
           // check player's health
-          if (playerHealth <= 0) {
-            window.alert(playerName + " has died!");
-            break;
-          } else {
-            window.alert(playerName + " still has " + playerHealth + " health left.");
-          }
-        }
-      };
+    if (playerHealth <= 0) {
+      window.alert(playerName + " has died!");
+      break;
+    } else {
+      window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+  }
+};
         
   // run fight function to start game
 
-  var startGame = function () {
-   for (var i = 0; i < enemyNames.length; i++) {
+var startGame = function () {
+  //reset player stats
+
+  playerHealth = 100;
+  playerAttack = 10;
+  playerMoney = 10;
+  for (var i = 0; i < enemyNames.length; i++) {
     if (playerHealth > 0) {
       window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ));
 
@@ -85,35 +90,33 @@ var fight = function(enemyName) {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
     }
-   
-      
-  }   
-   startGame (); {
-     playerHealth = 100;
-     playerAttack = 10;
-     playerMoney = 10;
-   }
-   endgame ();
-  }; 
+  }  
+  endGame();
+};  
 
-  var endGame = function () {
-    if (playerHealth > 0) {
-      window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
-    }
-    else {
-    window.alert("You've lost your robot in battle.");
-    }
+var endGame = function () {
+  if (playerHealth > 0) {
+    window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+  }
+  else {
+  window.alert("You've lost your robot in battle.");
+  }  
 
-    var playAgainConfirm = window.confirm("Would you like to play again?");
+  var playAgainConfirm = window.confirm("Would you like to play again?");
 
-    if (playAgainConfirm) {
-      startGame ();
-    }
+  if (playAgainConfirm) {
+    startGame ();
+  }
 
-    else {
-      window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-    }
-  };
+  else {
+    window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+  }
+};
+
+ 
+
+
+ 
   
-
+startGame ();
 
